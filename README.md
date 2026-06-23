@@ -59,6 +59,20 @@ nix build .
 
 The binary will be available at `./result/bin/helium`.
 
+## Enabling Widevine DRM
+
+You can enable Widevine by installing packages such as ```google-chrome``` or ```widevine-cdm```. Add the following code block to your home-manager configuration:
+
+```nix
+    home.file = {
+      ".config/net.imput.helium/WidevineCdm/latest-component-updated-widevine-cdm".text = 
+        builtins.toJSON {
+          #Path = "${pkgs.google-chrome}/share/google/chrome/WidevineCdm";
+          Path = "${pkgs.widevine-cdm}/share/google/chrome/WidevineCdm";
+        };
+    };
+```
+
 ## Contributing
 
 If you find something broken or not working as expected, feel free to open an issue or submit a pull request.
